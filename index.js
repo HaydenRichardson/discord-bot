@@ -22,9 +22,9 @@ client.on('message', message => {
     
        if (message.content.startsWith(prefix + 'search')){
         if (!args){
-          message.channel.send(`Please include what image you are searching for`)
+          message.channel.send('Please include what image you are searching for')
         }
-        let results = ${args};
+        let results = `${args}`
         image(message, results);
     }
 
