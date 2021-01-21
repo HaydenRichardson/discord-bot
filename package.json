@@ -1,21 +1,25 @@
 {
-  "name": "ping-pong-bot",
+
+  "name": "Example",
+
+  "description": "Example",
+
   "version": "1.0.0",
-  "description": "just piggies",
-  "main": "index.js",
+
+  "main": "bot.js",
+
   "scripts": {
+
     "start": "node bot.js"
+
   },
-  "author": "",
-  "license": "ISC",
+
   "dependencies": {
-    "cheerio": "^1.0.0-rc.5",
-    "config.json": "0.0.4",
-    "discord.js": "^12.5.1",
-    "google": "^2.1.0",
-    "images-scraper": "^6.0.0",
-    "node": "^15.4.0",
-    "request": "^2.88.2",
-    "youtube": "^0.1.0"
+
+    "discord.js": "12.5.1",
+
+    "request": "2.81.0"
+
   }
+
 }
