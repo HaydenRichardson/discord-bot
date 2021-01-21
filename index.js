@@ -1,3 +1,18 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const request = require('request')
+const cheerio = require('cheerio')
+
+const prefix = '!';
+
+
+client.on('ready', () => {
+  console.log('I am ready!');
+});
+
+ 
+   
+ 
 
 client.on('message', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
