@@ -1,0 +1,21 @@
+{
+  "name": "ping-pong-bot",
+  "version": "1.0.0",
+  "description": "just piggies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "config.json": "0.0.4",
+    "discord.js": "^12.5.1",
+    "google": "^2.1.0",
+    "images-scraper": "^6.0.0",
+    "node": "^15.4.0",
+    "request": "^2.88.2",
+    "youtube": "^0.1.0"
+  }
+}
