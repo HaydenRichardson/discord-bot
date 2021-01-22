@@ -116,8 +116,7 @@ client.on('message', message => {
         image(message, results);
     }
 
- 
-})
+}
 
     function image(message, results) {
         var options = {
