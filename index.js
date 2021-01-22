@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const request = require('request')
 const cheerio = require('cheerio')
-const { meme } = require('memejs')
 const fetch = require('node-fetch');
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 
@@ -114,7 +113,7 @@ client.on('message', message => {
         }
         let results = `${args}`
         image(message, results);
-    }
+    })
 
 }
 
