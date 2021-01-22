@@ -71,7 +71,7 @@ async function get_gif(search_term)
 {
     const query_term = encodeURIComponent(search_term);
 
-    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query_term}&limit=10&offset=0&rating=pg-13&lang=en`);
+    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query_term}&limit=20&offset=0&rating=pg-13&lang=en`);
     const giphy_json = await giphy_response.json();
 
     if(giphy_json.data.length > 0)
@@ -92,7 +92,7 @@ async function get_gif(search_term)
 
 async function random_gif()
 {
-    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=&rating=pg-13`);
+    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=&rating=r`);
     const giphy_json = await giphy_response.json();
     const img_url = giphy_json.data.images.fixed_height.url;
 
