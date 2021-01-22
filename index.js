@@ -116,7 +116,7 @@ client.on('message', message => {
         image(message, results);
     }
 
-    if (msg.content. === 'fiftyfifty') {
+    if (msg.content === 'fiftyfifty') {
     meme(["test"], function (err, data) {
         if (err) return message.reply(`couldnt find the subreddit: ${args}`).then(message => message.delete({ timeout: 3000 }))
         console.error(err);
