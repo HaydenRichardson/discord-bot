@@ -3,10 +3,6 @@ const client = new Discord.Client();
 const request = require('request')
 const cheerio = require('cheerio')
 const fetch = require('node-fetch');
-require('dotenv').config();
-
-const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
-const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 
 
 const BOT_COMMAND = '!gif';
@@ -159,5 +155,7 @@ client.on('message', message => {
     
 
 };
+
+client.login(process.env.BOT_TOKEN);
  
 
