@@ -4,20 +4,20 @@ const request = require('request')
 const cheerio = require('cheerio')
 const fetch = require('node-fetch');
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
-
+ 
 const BOT_COMMAND = '!gif';
 const prefix = '!';
-
-
+ 
+ 
 client.on('ready', () => {
   console.log('I am ready!');
 }); 
   
-
-
+ 
+ 
 client.on('message', (msg) =>{
-
-
+ 
+ 
     if(msg.content.toLowerCase().startsWith(BOT_COMMAND))
     {
         if(Math.random() > 0.8)
@@ -28,7 +28,7 @@ client.on('message', (msg) =>{
         if (msg.content.toLowerCase() != BOT_COMMAND)
         {
             const search_term = msg.content.substring(BOT_COMMAND.length).trimStart();
-
+ 
             get_gif(search_term)
             .then(img => {
                 if(msg.channel.id === '545031442065915955')
@@ -64,16 +64,16 @@ client.on('message', (msg) =>{
         
     }
 });
-
-
-
+ 
+ 
+ 
 async function get_gif(search_term)
 {
     const query_term = encodeURIComponent(search_term);
-
-    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query_term}&limit=100&offset=0&rating=r&lang=en`);
+ 
+    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query_term}&limit=20&offset=0&rating=pg-13&lang=en`);
     const giphy_json = await giphy_response.json();
-
+ 
     if(giphy_json.data.length > 0)
     {   
         const rand = Math.floor(Math.random()*(Math.min(giphy_json.data.length, 10)));
@@ -85,25 +85,25 @@ async function get_gif(search_term)
         throw new Error("No GIFs available");
     }
     
-
+ 
     
 }
-
-
+ 
+ 
 async function random_gif()
 {
     const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=&rating=r`);
     const giphy_json = await giphy_response.json();
     const img_url = giphy_json.data.images.fixed_height.url;
-
+ 
     return img_url;
 }
-
-
-
+ 
+ 
+ 
 client.on('message', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
-
+ 
     const args = message.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase();
     
@@ -113,10 +113,13 @@ client.on('message', message => {
         }
         let results = `${args}`
         image(message, results);
-    })
-
-}
-
+    }
+ 
+    
+    
+ 
+})
+ 
     function image(message, results) {
         var options = {
             url: "http://results.dogpile.com/serp?qc=images&q="+ results,
@@ -125,7 +128,7 @@ client.on('message', message => {
                 Accept: "text/html",
                 "User-Agent":"Chrome"
             }
-
+ 
         };
         request(options, function (error, response, responseBody){
             if(error){
@@ -146,13 +149,11 @@ client.on('message', message => {
                 message.channel.send(embed);
         })
             
-
-    
-
-    
-
-};
-
-client.login(process.env.BOT_TOKEN);
  
-
+    
+ 
+    
+ 
+};
+ 
+client.login(process.env.BOT_TOKEN);
