@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const request = require('request')
 const cheerio = require('cheerio')
+const { meme } = require('memejs')
 const fetch = require('node-fetch');
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 
@@ -115,7 +116,22 @@ client.on('message', message => {
         image(message, results);
     }
 
-    
+    client.on('message, message => {
+              if (msg.content.startsWith(prefix + 'fiftyfifty') {
+    meme(["test"], function (err, data) {
+        if (err) return message.reply(`couldnt find the subreddit: ${args}`).then(message => message.delete({ timeout: 3000 }))
+        console.error(err);
+
+        const embed = new Discord.MessageEmbed()
+            .setColor("Green")
+            .setImage(data.url)
+            .setTitle(`${data.subreddit}`)
+            .setURL(`https://reddit.com/r/${args}`.toUpperCase())
+
+        message.channel.send(embed);
+    });
+  }
+
     
 
 })
