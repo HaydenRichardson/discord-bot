@@ -116,8 +116,7 @@ client.on('message', message => {
         image(message, results);
     }
 
-    client.on('message, message => {
-              if (msg.content.startsWith(prefix + 'fiftyfifty') {
+    if (msg.content. === 'fiftyfifty') {
     meme(["test"], function (err, data) {
         if (err) return message.reply(`couldnt find the subreddit: ${args}`).then(message => message.delete({ timeout: 3000 }))
         console.error(err);
@@ -131,6 +130,7 @@ client.on('message', message => {
         message.channel.send(embed);
     });
   }
+
 
     
 
