@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const request = require('request')
 const cheerio = require('cheerio')
 const fetch = require('node-fetch');
-
+const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 
 const BOT_COMMAND = '!gif';
 const prefix = '!';
