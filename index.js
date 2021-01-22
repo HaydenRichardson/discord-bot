@@ -21,7 +21,7 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
     
        if (message.content.startsWith(prefix + 'img')){
-        if (!args[1]){
+        if (!args){
           message.channel.send(`Please include what image you are searching for`)
         }
         let results = `${args}`
