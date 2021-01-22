@@ -116,24 +116,7 @@ client.on('message', message => {
         image(message, results);
     }
 
-    if (msg.content === 'fiftyfifty') {
-    meme(["test"], function (err, data) {
-        if (err) return message.reply(`couldnt find the subreddit: ${args}`).then(message => message.delete({ timeout: 3000 }))
-        console.error(err);
-
-        const embed = new Discord.MessageEmbed()
-            .setColor("Green")
-            .setImage(data.url)
-            .setTitle(`${data.subreddit}`)
-            .setURL(`https://reddit.com/r/${args}`.toUpperCase())
-
-        message.channel.send(embed);
-    });
-  }
-
-
-    
-
+ 
 })
 
     function image(message, results) {
