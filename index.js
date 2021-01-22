@@ -71,7 +71,7 @@ async function get_gif(search_term)
 {
     const query_term = encodeURIComponent(search_term);
 
-    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query_term}&limit=20&offset=0&rating=pg-13&lang=en`);
+    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query_term}&limit=100&offset=0&rating=r&lang=en`);
     const giphy_json = await giphy_response.json();
 
     if(giphy_json.data.length > 0)
