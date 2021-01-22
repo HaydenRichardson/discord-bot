@@ -2,58 +2,108 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const request = require('request')
 const cheerio = require('cheerio')
+const fetch = require('node-fetch');
+require('dotenv').config();
 
+const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
+const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
+
+
+const BOT_COMMAND = '!gif';
 const prefix = '!';
 
 
 client.on('ready', () => {
   console.log('I am ready!');
+}); 
+  
+
+
+client.on('message', (msg) =>{
+
+
+    if(msg.content.toLowerCase().startsWith(BOT_COMMAND))
+    {
+        if(Math.random() > 0.8)
+        {
+            msg.react("❤️");
+        }
+        
+        if (msg.content.toLowerCase() != BOT_COMMAND)
+        {
+            const search_term = msg.content.substring(BOT_COMMAND.length).trimStart();
+
+            get_gif(search_term)
+            .then(img => {
+                if(msg.channel.id === '545031442065915955')
+                {
+                    msg.channel.send("", {files: [`${img}`]});
+                }
+                else
+                {
+                    msg.channel.send(`${img}`);
+                }
+            })
+            .catch(err => {
+                console.error(err)
+                msg.channel.send(`Couldn't find any GIFs for that 😢`);   
+            });
+        }
+        else
+        {
+            // give random gif!
+            random_gif()
+            .then(img => {
+                if(msg.channel.id === '545031442065915955')
+                {
+                    msg.channel.send("", {files: [`${img}`]});
+                }
+                else
+                {
+                    msg.channel.send(`${img}`);
+                }
+            })
+            .catch(err => console.error(err));
+        }
+        
+    }
 });
 
-client.on('message', (message) => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
-  
-  if (message.content.startsWith(prefix + "gif"))
-  {
-    
-    let splitWord = message.toString().split(" ");
-    let gifWord   = "";
 
-    
-    for( var i = 1; i < splitWord.length; i++)
-    {
-      if(i > 1)
-      {
-        gifWord = gifWord + "+";
-      }
 
-      gifWord = gifWord + splitWord[i];
+async function get_gif(search_term)
+{
+    const query_term = encodeURIComponent(search_term);
+
+    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query_term}&limit=10&offset=0&rating=pg-13&lang=en`);
+    const giphy_json = await giphy_response.json();
+
+    if(giphy_json.data.length > 0)
+    {   
+        const rand = Math.floor(Math.random()*(Math.min(giphy_json.data.length, 10)));
+        const img_url = giphy_json.data[rand].images.fixed_height.url;
+        return img_url;
     }
-
-    request("http://api.giphy.com/v1/gifs/search?q=" + gifWord + "&api_key=" + config.giphyKey + "&limit=100", function (error, response, body)
+    else
     {
-      if (!error && response.statusCode == 200)
-      {
-        // Convert body to JSON object
-        let jsonUrl = JSON.parse(body);
+        throw new Error("No GIFs available");
+    }
+    
 
-        // Get random number to choose GIF
-        let totGif = jsonUrl.data.length;
+    
+}
 
-        if(totGif > 100)
-        {
-          totGif = 100;
-        }
 
-        let ranNum = Math.floor(Math.random() * totGif);
+async function random_gif()
+{
+    const giphy_response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=&rating=pg-13`);
+    const giphy_json = await giphy_response.json();
+    const img_url = giphy_json.data.images.fixed_height.url;
 
-        message.channel.sendMessage(jsonUrl.data[ranNum].url);
-      }
-    });
-  }
-   
-   
- 
+    return img_url;
+}
+
+
 
 client.on('message', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -110,4 +160,4 @@ client.on('message', message => {
 
 };
  
-client.login(process.env.BOT_TOKEN);
+
