@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const BOT_COMMAND = '!gif';
+const GIPHY_API_KEY = process.env.GIPHY_API_KEY
 
 module.exports = {
     name: "gif",
