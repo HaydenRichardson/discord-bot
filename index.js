@@ -11,9 +11,9 @@ const { join } = require('path')
 client.commands = new Discord.Collection();
 
 
-const funFiles = readdirSync(join(__dirname, 'dicord-bot\commands\\fun')).filter(file => file.endsWith(".js"));
+const funFiles = readdirSync(join(__dirname, 'commands\\fun')).filter(file => file.endsWith(".js"));
 for (const file of funFiles) {
-	const command = require(join(__dirname, 'discord-bot\commands\\fun', `${file}`));
+	const command = require(join(__dirname, 'commands\\fun', `${file}`));
 	client.commands.set(command.name, command);
 }
 
