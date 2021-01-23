@@ -26,8 +26,6 @@ for (const file of funFiles) {
 }
 
 
-}
-
 client.on('ready', () => {
 	console.log('Bot online.')
 	client.user.setActivity('Hayden Bot | !help', { type: "STREAMING", url: 'https://www.twitch.tv/mom625' })
