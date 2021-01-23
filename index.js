@@ -10,16 +10,6 @@ const { join } = require('path');
 
 client.commands = new Discord.Collection();
 
-const commandsssFiles = readdirSync(join(__dirname, 'commands\\nsfw')).filter(file => file.endsWith(".js"));
-for (const file of commandsssFiles) {
-	const command = require(join(__dirname, 'commands\\nsfw', `${file}`));
-	client.commands.set(command.name, command);
-}
-const utilityFiles = readdirSync(join(__dirname, 'commands\\utility')).filter(file => file.endsWith(".js"));
-for (const file of utilityFiles) {
-	const command = require(join(__dirname, 'commands\\utility', `${file}`));
-	client.commands.set(command.name, command);
-
 }
 const funFiles = readdirSync(join(__dirname, 'commands\\fun')).filter(file => file.endsWith(".js"));
 for (const file of funFiles) {
