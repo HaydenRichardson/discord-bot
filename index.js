@@ -5,6 +5,8 @@ const cherrio = require('cheerio');
 const { token } = require('./json/config.json');
 const { readdirSync } = require('fs');
 const { prefix } = require('./json/config.json')
+const { join } = require('path');
+
 
 client.commands = new Discord.Collection();
 
