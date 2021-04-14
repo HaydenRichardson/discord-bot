@@ -1,6 +1,6 @@
 {
     "mongo": "mongodb+srv://userx:thisabadpass123@cluster0.ux5vq.mongodb.net/prefix?retryWrites=true&w=majority",
-    "token": "Nzk5NjY0MjA2MjgxNTcyMzkx.YAG3Uw.Am0F0jH9Flx-gjpARfw7T693yJo",
+    "token": "get one ",
     "giphy_token": "",
     "default_prefix": "!"
 }
